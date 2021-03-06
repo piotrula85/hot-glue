@@ -3,6 +3,12 @@ require 'ffaker'
 
 
 module HotGlue
+
+
+  class Error < StandardError
+  end
+
+
   module GeneratorHelper
     def text_area_output(col, field_length, col_identifier )
       lines = field_length % 40
@@ -58,9 +64,11 @@ module HotGlue
       begin
         object = eval(class_name)
       rescue StandardError => e
-        puts "*** Oops: It looks like there is no object for #{class_name}. Please define the object + database table first."
-        exit
+        message = "*** Oops: It looks like there is no object for #{class_name}. Please define the object + database table first."
+        raise(HotGlue::Error, message)
       end
+
+
       args = meta_args[0]
       @singular = args.first.tableize.singularize # should be in form hello_world
 
