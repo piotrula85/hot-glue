@@ -12,6 +12,8 @@ dump.rdb
 tmp/
 
 
+db/*.sqlite3
+
 spec/dummy/app/views/
 spec/dummy/app/controllers/
 spec/dummy/specs/
