@@ -55,7 +55,6 @@ module HotGlue
 
     def initialize(*meta_args) #:nodoc:
       super
-
       begin
         object = eval(class_name)
       rescue StandardError => e

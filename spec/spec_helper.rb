@@ -1,8 +1,6 @@
 ENV["RAILS_ENV"] ||= "test"
-begin
-  require 'byebug'
-rescue LoadError
-end
+require 'byebug'
+
 
 if( ENV['COVERAGE'] == 'on' )
   require 'simplecov'
