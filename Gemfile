@@ -5,3 +5,6 @@ gemspec
 
 gem 'sqlite3'
 gem 'byebug'
+
+gem 'rails', '6.1'
+gem 'devise', require: true
