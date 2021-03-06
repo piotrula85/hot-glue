@@ -61,11 +61,16 @@ module HotGlue
 
     def initialize(*meta_args) #:nodoc:
       super
+    
       begin
         object = eval(class_name)
       rescue StandardError => e
         message = "*** Oops: It looks like there is no object for #{class_name}. Please define the object + database table first."
         raise(HotGlue::Error, message)
+      end
+
+      if @specs_only && @no_specs
+        raise(HotGlue::Error, "*** Oops: You seem to have specified both the --specs-only flag and --no-specs flags. this doesn't make any sense, so I am aborting. sorry.")
       end
 
 
@@ -99,10 +104,7 @@ module HotGlue
       @no_create = options['no-create'] || false
       @no_paginate = options['no-paginate'] || false
 
-      if @specs_only && @no_specs
-        puts "*** Oops: You seem to have specified both the --specs-only flag and --no-specs flags. this doesn't make any sense, so I am aborting. sorry."
-        exit
-      end
+
 
       if @god
         @auth = nil

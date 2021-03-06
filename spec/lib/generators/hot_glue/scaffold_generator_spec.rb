@@ -14,6 +14,18 @@ describe HotGlue::ScaffoldGenerator do
       end
     end
 
+    it "with both --specs-only and --no-specs" do
+      begin
+        response = Rails::Generators.invoke("hot_glue:scaffold", ["Abc","--specs-only","--no-specs"])
+      rescue StandardError => e
+        expect(e.class).to eq(HotGlue::Error)
+        expect(e.message).to eq("*** Oops: You seem to have specified both the --specs-only flag and --no-specs flags. this doesn't make any sense, so I am aborting. sorry.")
+      end
+    end
+
+
+
+
     it "with no auth no current user and no auth identifier" do
 
     end
